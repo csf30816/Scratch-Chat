@@ -22,8 +22,9 @@
 				function(data){
 					obj = JSON.parse(data); //Fill up the Object with parsed data
 					for(i = 0; i < obj.length-1; i++) {
-						document.getElementById('messages').innerHTML = '<b>' + obj[i].user + ':</b>/u0009<i>' + obj[i].value + '</i><br>';
+						document.getElementById('messages').innerHTML = '<b>' + obj[i].user + ':</b> <i>' + obj[i].value + '</i><br>';
 					}
+					console.log(obj.length);
 				}
 			);
     </script>
