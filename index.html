@@ -22,7 +22,7 @@
 				function(data){
 					obj = JSON.parse(data); //Fill up the Object with parsed data
 					for(i = 0; i < obj.length-1; i++) {
-						document.getElementById('messages').innerHTML = "<b>" + obj[i[]].user + ":</b>&#09;<i>" + obj[i[]].value + "</i><br>";
+						document.getElementById('messages').innerHTML = "<b>" + obj[i].user + ":</b>&#09;<i>" + obj[i].value + "</i><br>";
 					}
 				}
 			);
