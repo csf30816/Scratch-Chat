@@ -17,7 +17,7 @@
 			return getAjax(
 				'http://www.purgomalum.com/service/containsprofanity?text=' + text,
 				function(data) {
-					return data;
+					return data.response;
 				}
 			);
 		};
