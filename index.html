@@ -20,7 +20,10 @@
 			getAjax(
 				'https://clouddata.scratch.mit.edu/logs?projectid=176090680&limit=15&offset=0',
 				function(data){
-					document.getElementById('messages').innerHTML = data;
+					obj = JSON.parse(data); //Fill up the Object with parsed data
+					for(i = 0; i < obj.length-1; i++) {
+						document.getElementById('messages').innerHTML = "<b>" + obj[i[]].user + ":</b>&#09;<i>" + obj[i[]].value + "</i><br>";
+					}
 				}
 			);
     </script>
