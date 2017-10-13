@@ -13,6 +13,15 @@
 <body>
 	<div id="messages"></div>
 	<script>
+		function isBad(text) {
+			return getAjax(
+				'http://www.purgomalum.com/service/containsprofanity?text=' + text,
+				function(data) {
+					return data;
+				}
+			);
+		};
+		
 		function getAjax(url, success) {
 			var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 			xhr.open('GET', 'https://cors-everywhere.herokuapp.com/' + url.replace('http:\/\/', '').replace('https:\/\/', ''));
@@ -29,7 +38,11 @@
 			function(data) {
 				obj = JSON.parse(data); //Fill up the Object with parsed data
 				for (i = 0; i < obj.length - 1; i++) {
-					document.getElementById('messages').innerHTML += '<b>' + obj[i].user + ':</b> <i>' + obj[i].value + '</i><br>';
+					if (!isBad(obj[i].value)) {
+						document.getElementById('messages').innerHTML += '<b>' + obj[i].user + ':</b> <i>' + obj[i].value + '</i><br>';
+					} else {
+						document.getElementById('messages').innerHTML += '<b>' + obj[i].user + ':</b> <i>[DELETED]</i><br>';
+					}
 				}
 				console.log(obj.length);
 			}
