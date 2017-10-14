@@ -32,14 +32,68 @@
 			xhr.send();
 			return xhr;
 		};
+		
+		function decode(text) {
+			var list = {
+				"01":"a",
+				"02":"b",
+				"03":"c",
+				"04":"d",
+				"05":"e",
+				"06":"f",
+				"07":"g",
+				"08":"h",
+				"09":"i",
+				"10":"j",
+				"11":"k",
+				"12":"l",
+				"13":"m",
+				"14":"n",
+				"15":"o",
+				"16":"p",
+				"17":"q",
+				"18":"r",
+				"19":"s",
+				"20":"t",
+				"21":"u",
+				"22":"v",
+				"23":"w",
+				"24":"x",
+				"25":"y",
+				"26":"z",
+				"27":" ",
+				"28":"-",
+				"29":"_",
+				"30":"+",
+				"31":"=",
+				"32":"0",
+				"33":"1",
+				"34":"2",
+				"35":"3",
+				"36":"4",
+				"37":"5",
+				"38":"6",
+				"39":"7",
+				"40":"8",
+				"41":"9"
+			};
+			var response = "";
+			var i = 0;
+			while (i < text.length) {
+				response += list[text.charAt(i) + text.charAt(i+1)];
+				i++;
+				i++;
+			};
+			return response;
+		}
 
 		getAjax(
 			'https://clouddata.scratch.mit.edu/logs?projectid=179864787&limit=50&offset=0',
 			function(data) {
 				obj = JSON.parse(data); //Fill up the Object with parsed data
 				for (i = 0; i < obj.length - 1; i++) {
-					if (isGood(obj[i].value)) {
-						document.getElementById('messages').innerHTML += '<b>' + obj[i].user + ':</b> <i>' + obj[i].value + '</i><br>';
+					if (isGood(decode(obj[i].value))) {
+						document.getElementById('messages').innerHTML += '<b>' + obj[i].user + ':</b> <i>' + decode(obj[i].value) + '</i><br>';
 					} else {
 						document.getElementById('messages').innerHTML += '<b>' + obj[i].user + ':</b> <i>[DELETED]</i><br>';
 					}
