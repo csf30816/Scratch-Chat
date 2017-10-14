@@ -14,12 +14,14 @@
 	<div id="messages"></div>
 	<script>
 		function isBad(text) {
-			return getAjax(
+			var r = "";
+			getAjax(
 				'http://www.purgomalum.com/service/containsprofanity?text=' + text,
 				function(data) {
-					return data;
+					r += data.response;
 				}
 			);
+			return r;
 		};
 		
 		function getAjax(url, success) {
@@ -38,7 +40,7 @@
 			function(data) {
 				obj = JSON.parse(data); //Fill up the Object with parsed data
 				for (i = 0; i < obj.length - 1; i++) {
-					if (!isBad(obj[i].value)) {
+					if (!isBad(obj[i].value).response) {
 						document.getElementById('messages').innerHTML += '<b>' + obj[i].user + ':</b> <i>' + obj[i].value + '</i><br>';
 					} else {
 						document.getElementById('messages').innerHTML += '<b>' + obj[i].user + ':</b> <i>[DELETED]</i><br>';
