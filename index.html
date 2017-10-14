@@ -93,7 +93,9 @@
 				obj = JSON.parse(data); //Fill up the Object with parsed data
 				for (i = 0; i < obj.length - 1; i++) {
 					if (isGood(decode(obj[i].value))) {
-						document.getElementById('messages').innerHTML += '<b>' + obj[i].user + ':</b> <i>' + decode(obj[i].value) + '</i><br>';
+						if (decode(obj[i].value) != "") {
+							document.getElementById('messages').innerHTML += '<b>' + obj[i].user + ':</b> <i>' + decode(obj[i].value) + '</i><br>';
+						}
 					} else {
 						document.getElementById('messages').innerHTML += '<b>' + obj[i].user + ':</b> <i>[DELETED]</i><br>';
 					}
